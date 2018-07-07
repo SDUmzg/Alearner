@@ -117,4 +117,14 @@ public class LambdaTest {
         reduceLambda.ReduceLambda(costBeforeTax);
     }
 
+    @Test
+    public void test11(){
+        String [] strArr = {"asda","asdasd","as","asdasda","sadasd asda","sa","sadada","sa"};
+        List<String> listStr = Arrays.asList(strArr);
+        ListStringLambda listStringLambda = new ListStringLambda();
+        listStringLambda.getListString(listStr);
+    }
+
+
+
 }
