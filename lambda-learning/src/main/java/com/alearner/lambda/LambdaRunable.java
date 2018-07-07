@@ -1,16 +1,13 @@
-package com.alearner;
+package com.alearner.lambda;
+
 
 /**
  * Created by mzg on 2018/7/6.
  */
 public class LambdaRunable {
 
-    public static void main(String [] args){
-        beforeLambda();
-        useLambda();
-    }
 
-    public static   void beforeLambda(){
+    public  void beforeLambda(){
         new Thread(new Runnable() {
             public void run() {
                 System.out.println("Anonymous inner classes");
@@ -18,7 +15,16 @@ public class LambdaRunable {
         }).start();
     }
 
-    public static void useLambda(){
+    public  void useLambda(){
         new Thread(()-> System.out.println("Using lambda")).start();
     }
+
+    /**
+     *  TODO：
+     *
+     * (params) -> expression
+     * (params) -> statement
+     * (params) -> { statements }
+     * (int even, int odd) -> even + odd   带参数怎么实现
+     */
 }
