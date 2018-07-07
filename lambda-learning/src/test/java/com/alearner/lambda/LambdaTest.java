@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.junit.Assert.*;
@@ -86,4 +87,34 @@ public class LambdaTest {
         predicateInLambda.andFilter(languages);
 
     }
+
+    @Test
+    public void test7(){
+        MapLambda mapLambda = new MapLambda();
+        List<Integer> costBeforeTax = Arrays.asList(100,200,300,400,500);
+        mapLambda.normalCostTax(costBeforeTax);
+    }
+
+    @Test
+    public void test8(){
+        MapLambda mapLambda = new MapLambda();
+        List<Integer> costBeforeTax = Arrays.asList(100,200,300,400,500);
+        mapLambda.caotTaxLambda(costBeforeTax);
+    }
+
+    @Test
+    public void test9(){
+        List<Integer> costBeforeTax = Arrays.asList(100,200,300,400,500);
+        ReduceLambda reduceLambda = new ReduceLambda();
+        reduceLambda.normalReduce(costBeforeTax);
+    }
+
+
+    @Test
+    public void test10(){
+        List<Integer> costBeforeTax = Arrays.asList(100,200,300,400,500);
+        ReduceLambda reduceLambda = new ReduceLambda();
+        reduceLambda.ReduceLambda(costBeforeTax);
+    }
+
 }
