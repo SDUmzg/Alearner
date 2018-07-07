@@ -57,5 +57,7 @@ public class LambdaTest {
         predicateLambda.filter(languages,(str)->false);
         System.out.println("Print language whose length greater than 4:");
         predicateLambda.filter(languages,(str)->str.toString().length()>4);
+        System.out.println("Print language whose length lee than 4");
+        predicateLambda.filter(languages,(str)->str.toString().length()<4);
     }
 }
