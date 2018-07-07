@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.junit.Assert.*;
 
@@ -59,5 +60,30 @@ public class LambdaTest {
         predicateLambda.filter(languages,(str)->str.toString().length()>4);
         System.out.println("Print language whose length lee than 4");
         predicateLambda.filter(languages,(str)->str.toString().length()<4);
+    }
+    @Test
+    public void test5(){
+        PredicateLambda predicateLambda = new PredicateLambda();
+        List<String> languages = Arrays.asList("Java", "Scala", "C++", "Haskell", "Lisp");
+        System.out.println("Languages which starts with J :");
+        predicateLambda.betterFilter(languages, (str)->str.toString().startsWith("J"));
+        System.out.println("Languages which ends with a ");
+        predicateLambda.betterFilter(languages,(str)->str.toString().endsWith("a"));
+        System.out.println("Print all languages :");
+        predicateLambda.betterFilter(languages,(str)->true);
+        System.out.println("Print no language : ");
+        predicateLambda.betterFilter(languages,(str)->false);
+        System.out.println("Print language whose length greater than 4:");
+        predicateLambda.betterFilter(languages,(str)->str.toString().length()>4);
+        System.out.println("Print language whose length lee than 4");
+        predicateLambda.betterFilter(languages,(str)->str.toString().length()<4);
+    }
+
+    @Test
+    public void test6(){
+        PredicateInLambda predicateInLambda = new PredicateInLambda();
+        List<String> languages = Arrays.asList("Java", "Scala", "C++", "Haskell", "Lisp");
+        predicateInLambda.andFilter(languages);
+
     }
 }

@@ -3,6 +3,7 @@ package com.alearner.lambda;
 
 /**
  * Created by mzg on 2018/7/6.
+ * 用lambda表达式实现Runnable
  */
 public class LambdaRunable {
 

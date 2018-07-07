@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by mzg on 2018/7/6.
+ * 使用Java 8 lambda表达式进行事件处理
  */
 public class EventProcess {
 

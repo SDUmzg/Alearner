@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by mzg on 2018/7/6.
+ * 使用lambda表达式对列表进行迭代
  */
 public class IterationLambda {
 
