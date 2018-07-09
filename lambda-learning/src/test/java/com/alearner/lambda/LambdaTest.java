@@ -132,6 +132,7 @@ public class LambdaTest {
         functionLambda.getFunctionLambda(G7);
     }
 
+
     @Test
     public void test13(){
         List<Integer> numbers = Arrays.asList(9, 10, 3, 4, 7, 3, 4);
@@ -141,6 +142,15 @@ public class LambdaTest {
         distinctCollection.getDistinct(numbers);
 
     }
+
+    @Test
+    public void test14(){
+        List<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+        StreamStatistics streamStatistics = new StreamStatistics();
+        streamStatistics.mixStatistics(primes);
+    }
+
+
 
 
 
