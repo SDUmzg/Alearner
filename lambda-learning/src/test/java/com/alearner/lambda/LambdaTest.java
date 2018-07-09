@@ -125,6 +125,19 @@ public class LambdaTest {
         listStringLambda.getListString(listStr);
     }
 
+    @Test
+    public void test12(){
+        List<String> G7 = Arrays.asList("USA", "Japan", "France", "Germany", "Italy", "U.K.","Canada");
+        FunctionLambda functionLambda = new FunctionLambda();
+        functionLambda.getFunctionLambda(G7);
+    }
+
+    public void test13(){
+        List<Integer> numbers = Arrays.asList(9, 10, 3, 4, 7, 3, 4);
+
+
+    }
+
 
 
 }
