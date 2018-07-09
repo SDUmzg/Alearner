@@ -132,9 +132,13 @@ public class LambdaTest {
         functionLambda.getFunctionLambda(G7);
     }
 
+    @Test
     public void test13(){
         List<Integer> numbers = Arrays.asList(9, 10, 3, 4, 7, 3, 4);
-
+        DistinctCollection  distinctCollection = new DistinctCollection();
+        distinctCollection.getMulDistinct(numbers);
+        System.out.println("----------------");
+        distinctCollection.getDistinct(numbers);
 
     }
 
