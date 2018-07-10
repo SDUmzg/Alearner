@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
@@ -16,6 +17,7 @@ import java.util.regex.Pattern;
 /**
  * Created by mzg on 2018/7/10.
  */
+@Component
 public class ValueBuilder {
     private static final Logger LOGGER = LoggerFactory.getLogger(ValueBuilder.class);
 

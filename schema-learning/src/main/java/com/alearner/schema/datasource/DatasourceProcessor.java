@@ -1,7 +1,7 @@
 package com.alearner.schema.datasource;
 
-import com.alearner.Model.mysql.User;
 import com.alearner.common.BaseResult;
+import com.alearner.common.CommonResponse;
 import com.alearner.common.ErrorStatus;
 import com.alearner.dao.BaseBodyParam;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -24,6 +25,9 @@ public class DatasourceProcessor {
 
     @Autowired
     private ApplicationContext context;
+
+    @Autowired
+    private MysqlRequestBuilder mysqlRequestBuilder;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -63,12 +67,22 @@ public class DatasourceProcessor {
             throw new RuntimeException(msg);
         }
 
-        BaseBodyParam baseBodyParam = new BaseBodyParam();
 
-
-
-
-        return null;
+        try {
+            BaseBodyParam baseBodyParam = mysqlRequestBuilder.createBaseBody(mysqlDataSource,param);
+            CommonResponse<BaseResult> response = (CommonResponse<BaseResult>)method.invoke(obj,baseBodyParam);
+            if (!ErrorStatus.SUCCESS.equals(response.getStatus())){
+                LOGGER.error("Failed to access Mysql service. className={}, methodName={}, status={}, errMsg={}", className, method, response.getStatus(), response.getErrMsg());
+                return null;
+            }
+            return response.getResult();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 
