@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.LinkedHashMap;
+
 /**
  * Created by mzg on 2018/7/9.
  */
@@ -15,5 +17,5 @@ public interface UserMapper {
     @Select("select * from user where name = #{name}")
     User findByName(@Param("name") String name);
 
-    User findUser(BaseBodyParam baseBodyParam);
+    LinkedHashMap findUser(BaseBodyParam baseBodyParam);
 }

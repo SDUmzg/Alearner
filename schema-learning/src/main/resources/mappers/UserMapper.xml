@@ -47,7 +47,7 @@
             <if test="key == 'sex'">sex = #{value}</if>
             <if test="key == 'phone'">phone = #{value}</if>
             <if test="key == 'email'">email = #{value}</if>
-            <if test="key == 'ableStatus'">ableStatus = #{value}</if>
+            <if test="key == 'ableStatus'">able_status = #{value}</if>
         </foreach>
     </sql>
 
