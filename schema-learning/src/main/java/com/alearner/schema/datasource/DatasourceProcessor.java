@@ -4,6 +4,7 @@ import com.alearner.common.BaseResult;
 import com.alearner.common.CommonResponse;
 import com.alearner.common.ErrorStatus;
 import com.alearner.dao.BaseBodyParam;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,10 +38,22 @@ public class DatasourceProcessor {
         Map<String,Object> results = new HashMap<>();
         datasource.forEach((k,v)->{
             if (v instanceof MysqlDataSource){
-
+                BaseResult result = getMysqlResult((MysqlDataSource)v,param);
+                if (result!=null){
+                    results.put(k,result);
+                    if (LOGGER.isDebugEnabled()){
+                        try {
+                            LOGGER.debug("JSF Result: {}", objectMapper.writeValueAsString(result));
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }else {
+                throw  new RuntimeException("Unknown schema data source definition. class=" + v.getClass());
             }
         });
-        return null;
+        return results;
     }
 
 

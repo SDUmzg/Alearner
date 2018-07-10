@@ -15,3 +15,10 @@ mybatis:
     map-underscore-to-camel-case: true
 #  config-location: classpath:mybatis-config.xml
 
+
+#显示输出mybatis的执行sql
+logging:
+  level:
+    com:
+      alearner:
+        Mapper: debug

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alearner.Mapper.UserMapper"><!--注意这里的地址-->
+    <resultMap type="java.util.LinkedHashMap" id="returnHashMap">
+    </resultMap>
+
+    <sql id="database">datastone</sql>
+    <sql id="user">user</sql>
+
+    <select id="findUser" parameterType="com.alearner.dao.BaseBodyParam" resultMap="returnHashMap">
+        SELECT
+        <if test="dimension != null and dimension.size()>0">
+            <foreach collection="dimension" item="item" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="dimension != null and dimension.size()>0">,</if>
+        <foreach collection="metric" item="item" separator=",">
+            ${item}
+        </foreach>
+        from <include refid="database"/>.<include refid="user"/>
+        <include refid="where"/>
+        <if test="dimension != null and dimension.size()>0">
+            GROUP BY
+            <foreach collection="dimension" item="item" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="sort !=null and sort.size()>0">
+            ORDER BY
+            <foreach collection="sort" item="sort_map" separator=",">
+                <foreach collection="sort_map" index="key" item="value" separator=",">
+                    #{key} #{value}
+                </foreach>
+            </foreach>
+        </if>
+        <if test="limit!=null">LIMIT #{limit}</if>
+    </select>
+
+
+    <sql id="where">
+        where
+        <foreach collection="filter" index="key" item="value" separator="and">
+            <if test="key == 'name'">name = #{value}</if>
+            <if test="key == 'sex'">sex = #{value}</if>
+            <if test="key == 'phone'">phone = #{value}</if>
+            <if test="key == 'email'">email = #{value}</if>
+            <if test="key == 'ableStatus'">ableStatus = #{value}</if>
+        </foreach>
+    </sql>
+
+</mapper>
