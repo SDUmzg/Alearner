@@ -3,6 +3,8 @@ package com.alearner.Mapper;
 import com.alearner.Application;
 import com.alearner.Model.mysql.User;
 import com.alearner.dao.BaseBodyParam;
+import com.alearner.schema.DefaultSchema;
+import com.alearner.schema.SchemaProcessor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ import java.util.*;
 public class UserMapperTest {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    SchemaProcessor schemaProcessor;
 
     @Test
     public void test1(){
@@ -55,7 +60,17 @@ public class UserMapperTest {
 
         LinkedHashMap result = userMapper.findUser(baseBodyParam);
         System.out.println(result.toString());
+    }
 
+
+    @Test
+    public void test3(){
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("sex","男");
+        parameters.put("phone","17865160000");
+        parameters.put("limit",3);
+        Object result = schemaProcessor.process("UserMapper", DefaultSchema.class,parameters);
+        System.out.println(result.toString());
 
 
     }

@@ -1,6 +1,7 @@
 package com.alearner.schema;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 /**
  * Created by mzg on 2018/7/10.
  */
+@Service
 public class SchemaProcessor {
 
     @Autowired

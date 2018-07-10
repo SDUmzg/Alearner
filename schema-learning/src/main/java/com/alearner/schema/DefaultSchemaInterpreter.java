@@ -1,7 +1,9 @@
 package com.alearner.schema;
 
+import com.alearner.schema.datasource.DatasourceProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -16,14 +18,19 @@ public class DefaultSchemaInterpreter implements SchemaInterpreter<DefaultSchema
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultSchemaInterpreter.class);
 
+    @Autowired
+    private DatasourceProcessor datasourceProcessor;
+
 
     @Override
     public Map process(DefaultSchema schema, Map<String, Object> parameters) {
-        return null;
+        Map<String,Object> dsResults = datasourceProcessor.process(schema.getDatasource(),parameters);
+        LOGGER.info(dsResults.toString());
+        return dsResults;
     }
 
     @Override
     public Class<DefaultSchema> getType() {
-        return null;
+        return DefaultSchema.class;
     }
 }

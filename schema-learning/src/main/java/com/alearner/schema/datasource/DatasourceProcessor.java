@@ -10,16 +10,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * Created by mzg on 2018/7/10.
  */
+@Service
 public class DatasourceProcessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatasourceProcessor.class);
@@ -83,12 +86,8 @@ public class DatasourceProcessor {
 
         try {
             BaseBodyParam baseBodyParam = mysqlRequestBuilder.createBaseBody(mysqlDataSource,param);
-            CommonResponse<BaseResult> response = (CommonResponse<BaseResult>)method.invoke(obj,baseBodyParam);
-            if (!ErrorStatus.SUCCESS.equals(response.getStatus())){
-                LOGGER.error("Failed to access Mysql service. className={}, methodName={}, status={}, errMsg={}", className, method, response.getStatus(), response.getErrMsg());
-                return null;
-            }
-            return response.getResult();
+            LinkedHashMap response = (LinkedHashMap)method.invoke(obj,baseBodyParam);
+            return new BaseResult(response);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             throw new RuntimeException(e.getMessage());
