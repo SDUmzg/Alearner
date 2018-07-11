@@ -70,7 +70,9 @@ public class UserMapperTest {
         parameters.put("phone","17865160000");
         parameters.put("limit",3);
         Object result = schemaProcessor.process("UserMapper", DefaultSchema.class,parameters);
-        System.out.println(result.toString());
+        HashMap hashMap = (HashMap) result;
+        String str  = hashMap.toString();
+        System.out.println(str);
 
 
     }
