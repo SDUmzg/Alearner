@@ -19,7 +19,7 @@ public  class StringUtils {
 
 
         LOGGER.info("upcase word list start ");
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("dataService-execute-thread-%d").build();
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("execute-thread-%d").build();
         ExecutorService threadPool = new ThreadPoolExecutor(100, 1500,
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(),

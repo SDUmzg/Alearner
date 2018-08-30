@@ -1,0 +1,3 @@
+logging:
+  pattern:
+    level: ' %X{uuid:-uuid} %X{user:-user} %5p'
