@@ -64,6 +64,11 @@
 			<version>6.2.2</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.floragunn</groupId>
+			<artifactId>search-guard-ssl</artifactId>
+			<version>6.2.2-25.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.elasticsearch.plugin</groupId>
@@ -117,25 +122,25 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>src/main/assembly/assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-release-plugin</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-assembly-plugin</artifactId>-->
+				<!--<configuration>-->
+					<!--<appendAssemblyId>false</appendAssemblyId>-->
+					<!--<descriptors>-->
+						<!--<descriptor>src/main/assembly/assembly.xml</descriptor>-->
+					<!--</descriptors>-->
+				<!--</configuration>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>generate-release-plugin</id>-->
+						<!--<phase>package</phase>-->
+						<!--<goals>-->
+							<!--<goal>single</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 

@@ -13,6 +13,7 @@
         <module>schema-learning</module>
         <module>mdc-learning</module>
         <module>completable-future</module>
+        <module>es-sql</module>
     </modules>
 
     <dependencies>
