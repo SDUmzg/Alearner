@@ -25,6 +25,7 @@ import java.util.Properties;
 
 import static com.alibaba.druid.pool.DruidDataSourceFactory.PROP_CONNECTIONPROPERTIES;
 
+
 /**
  * Created by mzg on 2018/10/31.
  */
@@ -32,8 +33,8 @@ public class ApplicationTest {
     @Test
     public void testJDBC() throws Exception {
         Properties properties = new Properties();
-        properties.put("url", "jdbc:elasticsearch://************:9300/");
-        properties.put(PROP_CONNECTIONPROPERTIES, "client.transport.ignore_cluster_name=true;xpack.security.user=elastic:*******");
+        properties.put("url", "jdbc:elasticsearch://114.115.144.19:9300/");
+        properties.put(PROP_CONNECTIONPROPERTIES, "client.transport.ignore_cluster_name=true;xpack.security.user=elastic:mzg...8535933570");
         DruidDataSource dds = (DruidDataSource) ElasticSearchDruidDataSourceFactory.createDataSource(properties);
 
         Connection connection = dds.getConnection();
@@ -54,17 +55,18 @@ public class ApplicationTest {
         Settings settings = Settings.builder()
                 .put("path.home", ".")
                 .put("http.enabled", true)
-                .put("cluster.name", "alearner")
+//                .put("cluster.name", "elasticsearch")
                 .put("searchguard.ssl.transport.keystore_filepath", "E:\\IdeaProjects\\Alearner\\es-sql\\src\\main\\resources\\conf\\testJdbc-keystore.jks")
                 .put("searchguard.ssl.transport.keystore_password", "kspass")
                 .put("searchguard.ssl.transport.truststore_filepath", "E:\\IdeaProjects\\Alearner\\es-sql\\src\\main\\resources\\conf\\truststore.jks")
                 .put("searchguard.ssl.transport.truststore_password", "tspass")
                 .put("searchguard.ssl.transport.enforce_hostname_verification", false)
+                .put("client.transport.ignore_cluster_name",true)
                 .build();
 
         TransportAddress transportAddress;
         try {
-            transportAddress = new TransportAddress(InetAddress.getByName("*******"),9300);
+            transportAddress = new TransportAddress(InetAddress.getByName("*****"),9300);
             TransportClient client = new PreBuiltTransportClient(settings,SearchGuardSSLPlugin.class)
                     .addTransportAddress(transportAddress);
 
